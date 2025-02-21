@@ -196,17 +196,21 @@ document.getElementById('comment-input').addEventListener('keydown', function(e)
     }
 });
 
-window.onload = function() {
+// window.onload 함수를 하나로 통합
+// 페이지 기본 경로를 동적으로 설정
+const basePath = window.location.hostname === 'ohndal.github.io' ? '/chess-pgn-viewer' : '';
 
+window.onload = function() {
     console.log('Initializing Chessboard...');
     board = Chessboard('board', {
         position: 'start',
         draggable: false,
-        pieceTheme: './img/chesspieces/wikipedia/{piece}.png'
+        pieceTheme: `${basePath}/img/chesspieces/wikipedia/{piece}.png`
     });
 
     console.log('Chessboard initialized', board);
 
+    // 모든 이벤트 리스너 등록
     document.getElementById('next').addEventListener('click', nextMove);
     document.getElementById('prev').addEventListener('click', prevMove);
     document.getElementById('pgn').addEventListener('input', loadPGN);
@@ -214,21 +218,12 @@ window.onload = function() {
     document.getElementById('excellent-btn').addEventListener('click', markExcellent);
     document.getElementById('blunder-btn').addEventListener('click', markBlunder);
     document.getElementById('save-game').addEventListener('click', saveGame);
-    document.getElementById('get-embed').addEventListener('click', generateEmbedCode);
+    document.getElementById('generate-embed').addEventListener('click', generateEmbedCode);
     
     moves = [];
     moveIndex = 0;
     comments = {};
     updateDisplay();
-}
-
-window.onload = function() {
-    // ... existing code ...
-    
-    // 이벤트 리스너에서 ID 확인
-    document.getElementById('generate-embed').addEventListener('click', generateEmbedCode);
-    
-    // ... existing code ...
 }
 
 // generateEmbedCode 함수 수정

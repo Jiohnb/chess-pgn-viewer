@@ -3,47 +3,56 @@
     <head>
         <title>체스 PGN 플레이어</title>
         <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-        <!-- base URL 추가 -->
+        
         <!-- CSS 파일들 -->
         <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
-        <link rel="stylesheet" href="./styles.css">
+        <link rel="stylesheet" id="customStyles" href="styles.css">
+
+        <script>
+            // 페이지 로드 시 동적으로 CSS 경로 설정
+            window.addEventListener('DOMContentLoaded', function() {
+                const basePath = window.location.hostname === 'ohndal.github.io' ? '/chess-pgn-viewer' : '';
+                document.getElementById('customStyles').href = `${basePath}/styles.css`;
+            });
+        </script>
+
         <!-- JavaScript 라이브러리들 -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
         <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
     </head>
-<body>
-    <div class="container">
-        <div class="pgn-container">
-            <label for="pgn">PGN</label>
-            <textarea id="pgn"></textarea>
-        </div>
-        <div class="main-content">
-            <div id="board"></div>
-            <div class="info-panel">
-                <div id="move-number"></div>
-                <div id="comment"></div>
+    <body>
+        <div class="container">
+            <div class="pgn-container">
+                <label for="pgn">PGN</label>
+                <textarea id="pgn"></textarea>
+            </div>
+            <div class="main-content">
+                <div id="board"></div>
+                <div class="info-panel">
+                    <div id="move-number"></div>
+                    <div id="comment"></div>
+                </div>
+            </div>
+            <div class="controls">
+                <button id="prev">이전</button>
+                <button id="next">다음</button>
+                <button id="save-game">게임 저장</button>
+                <button id="generate-embed">임베드 코드 생성</button>   
+            </div>
+            <div class="caption-section">
+                <div id="caption-container">
+                    <textarea id="comment-input" placeholder="이 수에 대한 설명을 입력하세요"></textarea>
+                    <button id="save-comment-btn">저장</button>
+                </div>
+                <div class="evaluation-buttons">
+                    <button id="excellent-btn" class="small-btn">탁월</button>
+                    <button id="blunder-btn" class="small-btn">블런더</button>
+                </div>
             </div>
         </div>
-        <div class="controls">
-            <button id="prev">이전</button>
-            <button id="next">다음</button>
-            <button id="save-game">게임 저장</button>
-            <button id="generate-embed">임베드 코드 생성</button>   
-        </div>
-        <div class="caption-section">
-            <div id="caption-container">
-                <textarea id="comment-input" placeholder="이 수에 대한 설명을 입력하세요"></textarea>
-                <button id="save-comment-btn">저장</button>
-            </div>
-            <div class="evaluation-buttons">
-                <button id="excellent-btn" class="small-btn">탁월</button>
-                <button id="blunder-btn" class="small-btn">블런더</button>
-            </div>
-        </div>
-    </div>
-    <!-- 스크립트 파일 -->
-    <script src="script.js"></script>
-</body>
+        <!-- 스크립트 파일 -->
+        <script src="script.js"></script>
+    </body>
 </html>
