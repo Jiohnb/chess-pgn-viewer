@@ -218,22 +218,44 @@ window.onload = function() {
     updateDisplay();
 }
 
+window.onload = function() {
+    // ... existing code ...
+    
+    // 이벤트 리스너에서 ID 확인
+    document.getElementById('generate-embed').addEventListener('click', generateEmbedCode);
+    
+    // ... existing code ...
+}
+
+// generateEmbedCode 함수 수정
 function generateEmbedCode() {
-    const gameData = {
-        pgn: document.getElementById('pgn').value,
-        comments: comments,
-        moves: moves.map(move => ({
-            ...move,
-            san: move.san
-        }))
-    };
-    
-    const compressed = LZString.compressToEncodedURIComponent(JSON.stringify(gameData));
-    const viewerUrl = `https://jiohnb.github.io/chess-pgn-viewer/viewer.html?data=${compressed}`;
-    
-    const embedCode = `<iframe src="${viewerUrl}" width="1000" height="650" frameborder="0"></iframe>`;
-    
-    // 임베드 코드를 클립보드에 복사
-    navigator.clipboard.writeText(embedCode);
-    alert('임베드 코드가 클립보드에 복사되었습니다!');
+    try {
+        const gameData = {
+            pgn: document.getElementById('pgn').value,
+            comments: comments,
+            moves: moves.map(move => ({
+                ...move,
+                san: move.san
+            }))
+        };
+        
+        const compressed = LZString.compressToEncodedURIComponent(JSON.stringify(gameData));
+        const viewerUrl = `https://jiohnb.github.io/chess-pgn-viewer/viewer.html?data=${compressed}`;
+        
+        const embedCode = `<iframe src="${viewerUrl}" width="1000" height="650" frameborder="0"></iframe>`;
+        
+        // 클립보드 복사 시도
+        navigator.clipboard.writeText(embedCode)
+            .then(() => {
+                alert('임베드 코드가 클립보드에 복사되었습니다!');
+            })
+            .catch(err => {
+                console.error('클립보드 복사 실패:', err);
+                // 복사 실패 시 사용자에게 코드 표시
+                alert('클립보드 복사에 실패했습니다. 수동으로 복사해주세요:\n\n' + embedCode);
+            });
+    } catch (error) {
+        console.error('임베드 코드 생성 중 오류:', error);
+        alert('임베드 코드 생성 중 오류가 발생했습니다.');
+    }
 }
