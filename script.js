@@ -240,7 +240,7 @@ function generateEmbedCode() {
         };
         
         const compressed = LZString.compressToEncodedURIComponent(JSON.stringify(gameData));
-        const viewerUrl = `https://jiohnb.github.io/chess-pgn-viewer/viewer.html?data=${compressed}`;
+        const viewerUrl = `https://ohndal.github.io/chess-pgn-viewer/viewer.html?data=${compressed}`;
         
         const embedCode = `<iframe src="${viewerUrl}" width="1000" height="650" frameborder="0"></iframe>`;
         
