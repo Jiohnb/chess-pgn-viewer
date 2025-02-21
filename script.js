@@ -200,7 +200,7 @@ window.onload = function() {
     board = Chessboard('board', {
         position: 'start',
         draggable: false,
-        pieceTheme: 'img/chesspieces/wikipedia/{piece}.png'
+        pieceTheme: '/img/chesspieces/wikipedia/{piece}.png'
     });
 
     document.getElementById('next').addEventListener('click', nextMove);
@@ -210,9 +210,30 @@ window.onload = function() {
     document.getElementById('excellent-btn').addEventListener('click', markExcellent);
     document.getElementById('blunder-btn').addEventListener('click', markBlunder);
     document.getElementById('save-game').addEventListener('click', saveGame);
+    document.getElementById('get-embed').addEventListener('click', generateEmbedCode);
     
     moves = [];
     moveIndex = 0;
     comments = {};
     updateDisplay();
+}
+
+function generateEmbedCode() {
+    const gameData = {
+        pgn: document.getElementById('pgn').value,
+        comments: comments,
+        moves: moves.map(move => ({
+            ...move,
+            san: move.san
+        }))
+    };
+    
+    const compressed = LZString.compressToEncodedURIComponent(JSON.stringify(gameData));
+    const viewerUrl = `https://jiohnb.github.io/chess-pgn-viewer/viewer.html?data=${compressed}`;
+    
+    const embedCode = `<iframe src="${viewerUrl}" width="1000" height="650" frameborder="0"></iframe>`;
+    
+    // 임베드 코드를 클립보드에 복사
+    navigator.clipboard.writeText(embedCode);
+    alert('임베드 코드가 클립보드에 복사되었습니다!');
 }
