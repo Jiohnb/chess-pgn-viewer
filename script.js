@@ -197,11 +197,15 @@ document.getElementById('comment-input').addEventListener('keydown', function(e)
 });
 
 window.onload = function() {
+
+    console.log('Initializing Chessboard...');
     board = Chessboard('board', {
         position: 'start',
         draggable: false,
         pieceTheme: './img/chesspieces/wikipedia/{piece}.png'
     });
+
+    console.log('Chessboard initialized', board);
 
     document.getElementById('next').addEventListener('click', nextMove);
     document.getElementById('prev').addEventListener('click', prevMove);
