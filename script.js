@@ -200,7 +200,7 @@ window.onload = function() {
     board = Chessboard('board', {
         position: 'start',
         draggable: false,
-        pieceTheme: '/chess-pgn-viewer/chesspieces/wikipedia/{piece}.png'
+        pieceTheme: 'img/chesspieces/wikipedia/{piece}.png'
     });
 
     document.getElementById('next').addEventListener('click', nextMove);

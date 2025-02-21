@@ -188,7 +188,7 @@ window.onload = function() {
     board = Chessboard('board', {
         position: 'start',
         draggable: false,
-        pieceTheme: '/chess-pgn-viewer/chesspieces/wikipedia/{piece}.png'
+        pieceTheme: 'img/chesspieces/wikipedia/{piece}.png'
     });
 
     // 버튼 이벤트 리스너 추가
