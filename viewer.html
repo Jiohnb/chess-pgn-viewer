@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>체스 게임 뷰어</title>
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+    <link rel="stylesheet" href="viewer.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
+</head>
+<body>
+    <div class="viewer-container">
+        <div class="content-wrapper">
+            <div id="board"></div>
+            <div class="side-panel">
+                <div id="move-number"></div>
+                <div id="comment"></div>
+                <div class="controls">
+                    <button id="prev" aria-label=""></button>
+                    <button id="next" aria-label=""></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="viewer.js"></script>
+</body>
+</html>

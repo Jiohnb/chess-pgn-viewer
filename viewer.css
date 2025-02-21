@@ -1,0 +1,100 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #fafafa;
+    font-family: Arial, sans-serif;
+}
+
+.viewer-container {
+    padding: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+#board {
+    width: 600px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.side-panel {
+    width: 375px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 600px;  /* 체스판 높이와 동일하게 설정 */
+    position: relative;  /* 버튼 위치 지정을 위해 */
+}
+
+#move-number {
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    font-size: 18px;
+    color: #333;
+    font-weight: 500;
+    min-height: 30px;
+}
+
+#comment {
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid #f0f0f0;
+    font-size: 16px;
+    color: #666;
+    line-height: 1.5;
+    min-height: 30px;
+    white-space: pre-wrap;
+}
+
+.controls {
+    position: absolute;  /* 절대 위치 지정 */
+    bottom: 0;          /* 하단에 배치 */
+    right: 0;          /* 오른쪽에 배치 */
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+}
+
+button {
+    width: 0;
+    height: 0;
+    padding: 0;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#prev {
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 25px solid #FFB74D;
+    transition: border-right-color 0.3s;
+}
+
+#prev:hover {
+    border-right-color: #FFA726;
+}
+
+#next {
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 25px solid #FFB74D;
+    transition: border-left-color 0.3s;
+}
+
+#next:hover {
+    border-left-color: #FFA726;
+}
