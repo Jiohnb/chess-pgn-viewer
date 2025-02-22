@@ -191,5 +191,9 @@ window.onload = function() {
         pieceTheme: './img/chesspieces/wikipedia/{piece}.png'
     });
 
+    // 버튼 이벤트 리스너 추가
+    document.getElementById('prev').addEventListener('click', prevMove);
+    document.getElementById('next').addEventListener('click', nextMove);
+
     loadGameData();
 }
